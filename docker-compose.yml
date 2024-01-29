@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+   mvcdocker:
+    container_name: mvcService
+    image: ${DOCKER_REGISTRY-}mvcdocker
+    build:
+      context: .
+      dockerfile: MVCDocker/Dockerfile
+    ports:
+          - "8080:80"
+    volumes:
+      - my_data_volume:/app/data     #local_path : container_path
+
+volumes:
+      my_data_volume:
+        driver: local
+        driver_opts:
+          type: none
+          o: bind
+          device: D:\DockerDemos\DockerVolumesPath #local path
+
+
+    
